@@ -21,7 +21,7 @@ class WriterController extends Controller
     public function show($id)
     {
         // Ambil writer beserta courses yang berhubungan
-        $writer = Writers::with('courses')->findOrFail($id);
+        $writer = Writers::with(['courses', 'articles'])->findOrFail($id);
 
         // Ambil semua kategori untuk dropdown navbar
         $categories = Category::all();
