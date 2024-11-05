@@ -41,14 +41,22 @@
     <div class="container mt-4">
         <div class="row">
             @foreach($articles as $article)
-                <div class="col-md-4 mb-4">
+                <div class="col-12 mb-4">
                     <div class="card h-100">
-                        <img src="{{ asset($article->articleImage) }}" class="card-img-top" alt="{{ $article->articlesTitle }}" style="height: 200px; object-fit: cover; border-radius: 5px;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">{{ $article->articlesTitle }}</h5>
-                            <p class="card-text text-muted">{{ $article->created_at->format('d M Y') }} | by: {{ $article->writer->writersName }}</p>
-                            <p class="card-text">{{ Str::words($article->articleContent, 15, '...') }}</p>
-                            <a href="{{ route('article.show', $article->id) }}" class="btn btn-primary mt-auto" style="background-color: #003366; border-radius: 15px;">Read more</a>
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset($article->articleImage) }}" class="img-fluid rounded-start" alt="{{ $article->articlesTitle }}" style="height: 100%; object-fit: cover; border-radius: 5px;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $article->articlesTitle }}</h5>
+                                    <p class="card-text text-muted">{{ $article->created_at->format('d M Y') }} | by: {{ $article->writer->writersName }}</p>
+                                    <p class="card-text">{{ Str::words($article->articleContent, 15, '...') }}</p>
+                                    <div class="text-end p-2">
+                                        <a href="{{ route('article.show', $article->id) }}" class="btn btn-primary mt-auto" style="background-color: #003366; border-radius: 15px;">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
