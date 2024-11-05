@@ -43,34 +43,30 @@
         <img src="{{ asset('images/banner.jpg') }}" alt="Banner Image" class="img-fluid w-100" style="max-height: 400px; object-fit: cover;">
     </div>
 
-    <!-- Konten Courses -->
+    <!-- Konten Articles Populer -->
     <div class="container mt-4">
-        @foreach($courses as $course)
-            <div class="row mb-4 p-3 border rounded">
-                <!-- Gambar Course -->
-                <div class="col-md-3">
-                    <img src="{{ asset($course->courseImage) }}" alt="{{ $course->courseName }}" class="img-fluid rounded" style="border-radius: 15px;">
+    @foreach($articles as $article)
+        <div class="row mb-4 p-3 border rounded">
+            <!-- Gambar Artikel -->
+            <div class="col-md-3">
+                <img src="{{ asset($article->articleImage) }}" alt="{{ $article->articlesTitle }}" class="img-fluid rounded" style="border-radius: 15px;">
+            </div>
+            <!-- Detail Artikel -->
+            <div class="col-md-9 d-flex flex-column justify-content-between">
+                <div>
+                    <h4>{{ $article->articlesTitle }}</h4>
+                    <p class="text-muted">
+                        {{ $article->created_at->format('d M Y') }} | by: {{ $article->writer->writersName }}
+                    </p>
+                    <p>{{ Str::words($article->articleContent, 15, '...') }}</p>
                 </div>
-                <!-- Detail Course -->
-                <div class="col-md-9 d-flex flex-column justify-content-between">
-                    <!-- Judul dan Informasi Course -->
-                    <div>
-                        <h4>{{ $course->courseName }}</h4>
-                        <p class="text-muted">
-                            {{ $course->created_at->format('d M Y') }} | by: {{ $course->writer->writersName }}
-                        </p>
-                        <p>{{ Str::words($course->courseContent, 15, '...') }}</p>
-                    </div>
-                    <!-- Tombol Read More -->
-                    <div class="text-end">
-                        <a href="{{ route('course.show', $course->id) }}" class="btn btn-primary btn-sm" style="background-color: #003366; border-radius: 15px; border: none; padding: 0.5rem 2rem; width: fit-content;">Read more</a>
-
-                      <!-- <a href="#" class="btn btn-primary btn-sm" style="background-color: #003366; border-radius: 15px; border: none; padding: 0.5rem 2rem; width: fit-content;">Read more</a> -->
-                    </div>
+                <div class="text-end">
+                    <a href="{{ route('article.show', $article->id) }}" class="btn btn-primary btn-sm" style="background-color: #003366; border-radius: 15px; border: none; padding: 0.5rem 2rem; width: fit-content;">Read more</a>
                 </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
+</div>
 
     <!-- Footer -->
     <footer class="bg-dark text-center text-lg-start mt-5">
